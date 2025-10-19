@@ -295,13 +295,13 @@ ___TEMPLATE_PARAMETERS___
   },
   {
     "type": "GROUP",
-    "name": "additionalSettings",
+    "name": "additionalSettingsGroup",
     "displayName": "Additional Axeptio Settings",
     "groupStyle": "ZIPPY_CLOSED",
     "subParams": [
       {
         "type": "PARAM_TABLE",
-        "name": "additionalSettings",
+        "name": "axeptioAdditionalSettings",
         "displayName": "Additional Axeptio Settings",
         "paramTableColumns": [
           {
@@ -398,20 +398,24 @@ const axeptioSettings = {
   platform: 'tms-gtm'
 };
 
-if (Array.isArray(data.additionalSettings)) {
-  data.additionalSettings.forEach(entry => {
-    if (!entry) {
-      return;
+const additionalSettings = data.axeptioAdditionalSettings || data.additionalSettings;
+
+if (additionalSettings && typeof additionalSettings.length === 'number') {
+  for (let index = 0; index < additionalSettings.length; index += 1) {
+    const entry = additionalSettings[index];
+
+    if (!entry || typeof entry !== 'object') {
+      continue;
     }
 
     const key = typeof entry.key === 'string' ? entry.key.trim() : entry.key;
 
     if (!key) {
-      return;
+      continue;
     }
 
     axeptioSettings[key] = entry.value;
-  });
+  }
 }
 
 setInWindow('axeptioSettings', axeptioSettings, true);
