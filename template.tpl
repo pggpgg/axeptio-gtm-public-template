@@ -12,7 +12,7 @@ ___INFO___
   "type": "TAG",
   "id": "cvt_5TPRD",
   "version": 1,
-  "displayName": "Axeptio CMP",
+  "displayName": "Axeptio CMP (v4)",
   "brand": {
     "id": "github.com_axeptio",
     "displayName": "Axeptio",
@@ -307,7 +307,7 @@ ___TEMPLATE_PARAMETERS___
           {
             "param": {
               "type": "TEXT",
-              "name": "key",
+              "name": "parameter",
               "displayName": "Key",
               "simpleValueType": true,
               "help": "Name of the Axeptio setting to override or extend."
@@ -324,7 +324,8 @@ ___TEMPLATE_PARAMETERS___
             },
             "isUnique": false
           }
-        ]
+        ],
+        "help": "Only use official axeptioSettings parameters"
       }
     ]
   }
