@@ -37,6 +37,12 @@ You can configure several settings within the **Axeptio** template to align with
 - **Transport URL (Server-Side Tracking)**: Configure the transport URL to send consent data to a server-side endpoint for tracking purposes.
 - **Consent Mode V2**: The template supports Google Consent Mode V2, which allows you to set consent states for different purposes, such as analytics, ads, etc.
 
+### Additional Axeptio Settings
+- Find the **Additional Axeptio Settings** group collapsed under a zippy disclosure in the GTM tag editor; expand it to reveal the table when you need to manage overrides.
+- Use the **Additional Axeptio Settings** table to provide extra key/value pairs that will be merged into the `axeptioSettings` object before the SDK loads.
+- Both the **Key** and **Value** columns accept GTM variables (e.g. `{{Your Variable}}`), allowing you to dynamically reference data for either field.
+- The key column enforces uniqueness, so each setting name is only used once—later rows with the same key overwrite earlier entries in the published tag.
+
 ### Consent Mode Configuration
 With **Google Consent Mode V2**, you can set the following purposes:
 - **analytics_storage**: Controls the consent for analytics-related cookies.
