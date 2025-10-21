@@ -300,28 +300,24 @@ ___TEMPLATE_PARAMETERS___
     "groupStyle": "ZIPPY_CLOSED",
     "subParams": [
       {
-        "type": "PARAM_TABLE",
+        "type": "SIMPLE_TABLE",
         "name": "axeptioAdditionalSettings",
         "displayName": "Additional Axeptio Settings",
-        "paramTableColumns": [
+        "simpleTableColumns": [
           {
-            "param": {
-              "type": "TEXT",
-              "name": "parameter",
-              "displayName": "Key",
-              "simpleValueType": true,
-              "help": "Name of the Axeptio setting to override or extend."
-            },
+            "type": "TEXT",
+            "name": "key",
+            "displayName": "Key",
+            "simpleValueType": true,
+            "help": "Name of the Axeptio setting to override or extend.",
             "isUnique": true
           },
           {
-            "param": {
-              "type": "TEXT",
-              "name": "value",
-              "displayName": "Value",
-              "simpleValueType": true,
-              "help": "Value assigned to the setting."
-            },
+            "type": "TEXT",
+            "name": "value",
+            "displayName": "Value",
+            "simpleValueType": true,
+            "help": "Value assigned to the setting.",
             "isUnique": false
           }
         ],
