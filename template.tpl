@@ -344,6 +344,21 @@ const setInWindow = require('setInWindow');
 const makeNumber = require('makeNumber');
 const decodeUriComponent = require('decodeUriComponent');
 
+const findAdditionalSetting = (data, key) => {
+  const list = data.axeptioAdditionalSettings || data.additionalSettings;
+  if (!list || typeof list.length !== 'number') return undefined;
+  for (let i = 0; i < list.length; i += 1) {
+    const entry = list[i];
+    if (entry && typeof entry === 'object') {
+      const k = typeof entry.key === 'string' ? entry.key.trim() : entry.key;
+      if (k === key) {
+        return typeof entry.value === 'string' ? entry.value.trim() : entry.value;
+      }
+    }
+  }
+  return undefined;
+};
+
 let earlyConsentUpdateApplied = false;
 
 if(data.isComoEnabled){
@@ -387,9 +402,9 @@ const main = (data) => {
   });
 
   // Early consent update from Axeptio cookie (runs before SDK loads).
-  // Honors custom cookie name from data.consentCookieName, falls back to 'axeptio_cookies'.
+  // Reads jsonCookieName from the additional-settings table if set, falls back to 'axeptio_cookies'.
   // Cookie value may be raw JSON or URL-encoded (e.g. %22 for ", %2C for ,).
-  const cookieName = data.consentCookieName || 'axeptio_cookies';
+  const cookieName = findAdditionalSetting(data, 'jsonCookieName') || 'axeptio_cookies';
   const cookieValues = getCookieValues(cookieName);
   if (cookieValues && cookieValues.length > 0) {
     let raw = cookieValues[0];
